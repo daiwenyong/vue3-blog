@@ -1,12 +1,31 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { visualizer } from 'rollup-plugin-visualizer'
+import path from 'path'
 
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
+function resolve(dir) {
+    return path.resolve(__dirname, dir)
+}
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [
+        vue(),
+        visualizer({ open: true }),
+        AutoImport({
+            resolvers: [ElementPlusResolver()],
+        }),
+        Components({
+            resolvers: [ElementPlusResolver()],
+        }),
+    ],
     resolve: {
         alias: {
-            '@': '/src',
-            '@views': '/src/views',
+            '@': resolve('src'),
+            '@views': resolve('src/views'),
+            // '@views': path.resolve(__dirname, './src/views'),
         },
     },
 

@@ -3,7 +3,7 @@ import { getCategoryInfo, getCategoryList } from '../api/category'
 
 export default function useCategory() {
     const list = ref<CategoryModel[]>([])
-    const info = ref<CategoryModel>({})
+    const info = ref<CategoryModel>()
     const getList = async () => {
         list.value = await getCategoryList()
     }

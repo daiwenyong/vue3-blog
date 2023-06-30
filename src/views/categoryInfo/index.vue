@@ -4,7 +4,7 @@ import useCategory from '@/composables/useCategory'
 
 const { info, getInfo } = useCategory()
 const route = useRoute()
-const id = route.query.id
+const id: number = route.query.id as unknown as number
 async function init() {
     await getInfo(id)
     // console.log(info.value)
@@ -14,7 +14,7 @@ init()
 
 <template>
     <div>category-info.vue</div>
-    {{ info.title }}
+    {{ info?.title }}
 </template>
 
 <style scoped></style>

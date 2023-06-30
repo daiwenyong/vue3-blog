@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import Category from '@/views/category/index.vue'
 import useCategory from '@/composables/useCategory'
 import { useRouter } from 'vue-router'
 
-const { getList, list, info, getInfo } = useCategory()
+const { getList, list, getInfo } = useCategory()
 
 getList()
 
 const router = useRouter()
 
-const handleItem = async (item) => {
-    const id = item.id
+const handleItem = async (item: CategoryModel) => {
+    const id: number = item.id
     await getInfo(id)
 
     router.push({
